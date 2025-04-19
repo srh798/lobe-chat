@@ -4,7 +4,9 @@ import { systemPrompt } from './systemRole';
 
 export const LocalFilesApiName = {
   listLocalFiles: 'listLocalFiles',
+  moveLocalFile: 'moveLocalFile',
   readLocalFile: 'readLocalFile',
+  renameLocalFile: 'renameLocalFile',
   searchLocalFiles: 'searchLocalFiles',
   writeFile: 'writeFile',
 };
@@ -122,6 +124,45 @@ export const LocalFilesManifest: BuiltinToolManifest = {
           },
         },
         required: ['keywords'],
+        type: 'object',
+      },
+    },
+    {
+      description:
+        'Move a file or folder to a new location, optionally renaming it. Input should be the current path (oldPath) and the target path (newPath).',
+      name: LocalFilesApiName.moveLocalFile,
+      parameters: {
+        properties: {
+          newPath: {
+            description:
+              'The new path for the file or folder (can be in a different directory and have a different name)',
+            type: 'string',
+          },
+          oldPath: {
+            description: 'The current path of the file or folder to move',
+            type: 'string',
+          },
+        },
+        required: ['oldPath', 'newPath'],
+        type: 'object',
+      },
+    },
+    {
+      description:
+        'Rename a file or folder in its current location. Input should be the current full path and the new name.',
+      name: LocalFilesApiName.renameLocalFile,
+      parameters: {
+        properties: {
+          newName: {
+            description: 'The new name for the file or folder (without path)',
+            type: 'string',
+          },
+          path: {
+            description: 'The current full path of the file or folder to rename',
+            type: 'string',
+          },
+        },
+        required: ['path', 'newName'],
         type: 'object',
       },
     },

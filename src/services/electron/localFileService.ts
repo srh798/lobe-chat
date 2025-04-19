@@ -5,8 +5,10 @@ import {
   LocalReadFileResult,
   LocalReadFilesParams,
   LocalSearchFilesParams,
+  MoveLocalFileParams,
   OpenLocalFileParams,
   OpenLocalFolderParams,
+  RenameLocalFileParams,
   dispatch,
 } from '@lobechat/electron-client-ipc';
 
@@ -33,6 +35,14 @@ class LocalFileService {
 
   async openLocalFolder(params: OpenLocalFolderParams) {
     return dispatch('openLocalFolder', params);
+  }
+
+  async moveLocalFile(params: MoveLocalFileParams) {
+    return dispatch('moveFile', params);
+  }
+
+  async renameLocalFile(params: RenameLocalFileParams) {
+    return dispatch('renameLocalFile', params);
   }
 
   async openLocalFileOrFolder(path: string, isDirectory: boolean) {

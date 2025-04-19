@@ -31,3 +31,17 @@ export interface LocalReadFileState {
 export interface LocalReadFilesState {
   filesContent: LocalReadFileResult[];
 }
+
+export interface LocalMoveFileState {
+  error?: string;
+  newPath: string;
+  oldPath: string;
+  success: boolean;
+}
+
+export interface LocalRenameFileState {
+  error?: string;
+  newPath: string;
+  oldPath: string;
+  success: boolean;
+}

@@ -19,6 +19,22 @@ export interface ListLocalFileParams {
   path: string;
 }
 
+export interface MoveLocalFileParams {
+  newPath: string;
+  oldPath: string;
+}
+
+export interface RenameLocalFileParams {
+  newName: string;
+  path: string;
+}
+
+export interface RenameLocalFileResult {
+  error?: any;
+  newPath: string;
+  success: boolean;
+}
+
 export interface LocalReadFileParams {
   loc?: [number, number];
   path: string;
