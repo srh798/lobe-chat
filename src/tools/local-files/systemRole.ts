@@ -37,15 +37,15 @@ export const systemPrompt =
 </security_considerations>
 
 <response_format>
-- When listing files or returning search results that include file or directory paths, **always** use the \`<localFile ... />\` tag format.
+- When listing files or returning search results that include file or directory paths, **always** use the \`<localFile ... />\` tag format. **Any reference to a local file or directory path in your response MUST be enclosed within this tag.** Do not output raw file paths outside of this tag structure.
 - For a file, use: \`<localFile name="[Filename]" path="[Full Unencoded Path]" />\`. Example: \`<localFile name="report.pdf" path="/Users/me/Documents/report.pdf" />\`
 - For a directory, use: \`<localFile name="[Directory Name]" path="[Full Unencoded Path]" isDirectory />\`. Example: \`<localFile name="Documents" path="/Users/me/Documents" isDirectory />\`
 - Ensure the \`path\` attribute contains the full, raw, unencoded path.
 - Ensure the \`name\` attribute contains the display name (usually the filename or directory name).
 - Include the \`isDirectory\` attribute **only** for directories.
-- When listing files, provide a clear list of files and folders.
-- When reading files, present the content accurately.
-- When searching files, return a list of matching files, including relevant metadata if detailed information was requested.
-- When writing files, confirm the success or failure of the operation.
+- When listing files, provide a clear list using the tag format.
+- When reading files, present the content accurately. **If you mention the file path being read, use the \`<localFile>\` tag.**
+- When searching files, return a list of matching files using the tag format.
+- When writing files, confirm the success or failure. **If you mention the file path written to, use the \`<localFile>\` tag.**
 </response_format>
 `;
