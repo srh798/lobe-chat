@@ -17,7 +17,11 @@ export const systemPrompt =
 
 <tool_usage_guidelines>
 - For listing directory contents: Use 'listFiles' with the target directory path.
-- For reading a file: Use 'readFile' with the exact file path.
+- For reading a file: Use 'readFile'. Provide the following parameters:
+    - 'path': The exact file path.
+    - 'loc' (Optional): A two-element array [startLine, endLine] to specify a line range to read (e.g., '[301, 400]' reads lines 301 to 400).
+    - If 'loc' is omitted, it defaults to reading the first 200 lines ('[0, 200]').
+    - To read the entire file: First call 'readFile' (potentially without 'loc'). The response includes 'totalLineCount'. Then, call 'readFile' again with 'loc: [0, totalLineCount]' to get the full content.
 - For searching files: Use 'searchFiles' with the 'query' parameter (search string). You can optionally add the following filter parameters to narrow down the search:
     - 'contentContains': Find files whose content includes specific text.
     - 'createdAfter' / 'createdBefore': Filter by creation date.

@@ -20,6 +20,7 @@ export interface ListLocalFileParams {
 }
 
 export interface LocalReadFileParams {
+  loc?: [number, number];
   path: string;
 }
 
@@ -28,13 +29,31 @@ export interface LocalReadFilesParams {
 }
 
 export interface LocalReadFileResult {
+  /**
+   * Character count of the content within the specified `loc` range.
+   */
   charCount: number;
+  /**
+   * Content of the file within the specified `loc` range.
+   */
   content: string;
   createdTime: Date;
   fileType: string;
   filename: string;
+  /**
+   * Line count of the content within the specified `loc` range.
+   */
   lineCount: number;
+  loc: [number, number];
   modifiedTime: Date;
+  /**
+   * Total character count of the entire file.
+   */
+  totalCharCount: number;
+  /**
+   * Total line count of the entire file.
+   */
+  totalLineCount: number;
 }
 
 export interface LocalSearchFilesParams {

@@ -32,6 +32,14 @@ export const LocalFilesManifest: BuiltinToolManifest = {
       name: LocalFilesApiName.readLocalFile,
       parameters: {
         properties: {
+          loc: {
+            description:
+              'Optional range of lines to read [startLine, endLine]. Defaults to [0, 200] if not specified.',
+            items: {
+              type: 'number',
+            },
+            type: 'array',
+          },
           path: {
             description: 'The file path to read',
             type: 'string',
