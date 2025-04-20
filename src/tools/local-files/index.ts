@@ -202,6 +202,6 @@ export const LocalFilesManifest: BuiltinToolManifest = {
     avatar: '📁',
     title: 'Local Files',
   },
-  systemRole: systemPrompt(),
+  systemRole: systemPrompt,
   type: 'builtin',
 };
