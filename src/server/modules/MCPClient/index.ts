@@ -22,7 +22,7 @@ interface StdioMCPConnection extends MCPConnectionBase {
   command: string;
   type: 'stdio';
 }
-type MCPConnection = HttpMCPConnection | StdioMCPConnection;
+export type MCPConnection = HttpMCPConnection | StdioMCPConnection;
 
 export class MCPClient {
   private mcp: Client;
