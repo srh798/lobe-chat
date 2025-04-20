@@ -1,11 +1,12 @@
 import {
   ListLocalFileParams,
   LocalFileItem,
+  LocalMoveFilesResultItem,
   LocalReadFileParams,
   LocalReadFileResult,
   LocalReadFilesParams,
   LocalSearchFilesParams,
-  MoveLocalFileParams,
+  MoveLocalFilesParams,
   OpenLocalFileParams,
   OpenLocalFolderParams,
   RenameLocalFileParams,
@@ -37,8 +38,8 @@ class LocalFileService {
     return dispatch('openLocalFolder', params);
   }
 
-  async moveLocalFile(params: MoveLocalFileParams) {
-    return dispatch('moveFile', params);
+  async moveLocalFiles(params: MoveLocalFilesParams): Promise<LocalMoveFilesResultItem[]> {
+    return dispatch('moveLocalFiles', params);
   }
 
   async renameLocalFile(params: RenameLocalFileParams) {

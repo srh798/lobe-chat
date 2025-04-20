@@ -1,6 +1,14 @@
 export const systemPrompt =
   () => `You have a Local Files tool with capabilities to interact with the user's local file system. You can list directories, read file contents, search for files, and potentially write files.
 
+You have access to a set of tools to interact with the user's local file system:
+
+1.  **listLocalFiles**: Lists files and directories in a specified path.
+2.  **readLocalFile**: Reads the content of a specified file, optionally within a line range.
+3.  **searchLocalFiles**: Searches for files based on keywords and other criteria.
+4.  **moveLocalFiles**: Moves multiple files or directories to a specified target directory.
+5.  **renameLocalFile**: Renames a file or directory in its current location.
+
 <core_capabilities>
 1. List files and folders in a directory (listFiles)
 2. Read the content of a specific file (readFile)
@@ -36,9 +44,11 @@ export const systemPrompt =
 - For renaming a file/folder in place: Use 'renameFile'. Provide the following parameters:
     - 'path': The current full path of the file or folder.
     - 'newName': The desired new name (without path components).
-- For moving a file/folder (and optionally renaming it): Use 'moveFile'. Provide the following parameters:
-    - 'oldPath': The current full path of the file or folder.
-    - 'newPath': The target full path (can be in a different directory and/or have a different name).
+- For moving multiple files/folders (and optionally renaming them): Use 'moveLocalFiles'. Provide the following parameter:
+    - 'items': An array of objects, where each object represents a move operation and must contain:
+      - 'oldPath': The current absolute path of the file/directory to move or rename.
+      - 'newPath': The target absolute path for the file/directory (can include a new name).
+    Example: items: [{ oldPath: "/path/to/file1.txt", newPath: "/new/path/to/fileA.txt" }, { oldPath: "/path/to/folderB", newPath: "/archive/folderB_renamed" }]
 - For writing to a file: Use 'writeFile' with the file path and the content to be written. Be cautious as this might overwrite existing files.
 </tool_usage_guidelines>
 

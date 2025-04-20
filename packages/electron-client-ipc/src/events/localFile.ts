@@ -1,11 +1,12 @@
 import {
   ListLocalFileParams,
   LocalFileItem,
+  LocalMoveFilesResultItem,
   LocalReadFileParams,
   LocalReadFileResult,
   LocalReadFilesParams,
   LocalSearchFilesParams,
-  MoveLocalFileParams,
+  MoveLocalFilesParams,
   OpenLocalFileParams,
   OpenLocalFolderParams,
   RenameLocalFileParams,
@@ -15,17 +16,13 @@ import {
 export interface LocalFilesDispatchEvents {
   // Local Files API Events
   listLocalFiles: (params: ListLocalFileParams) => LocalFileItem[];
-  moveFile: (params: MoveLocalFileParams) => RenameLocalFileResult;
-  // New methods
+  moveLocalFiles: (params: MoveLocalFilesParams) => LocalMoveFilesResultItem[];
+
   openLocalFile: (params: OpenLocalFileParams) => void;
   openLocalFolder: (params: OpenLocalFolderParams) => void;
   readLocalFile: (params: LocalReadFileParams) => LocalReadFileResult;
   readLocalFiles: (params: LocalReadFilesParams) => LocalReadFileResult[];
 
-  renameLocalFile: (params: RenameLocalFileParams) => {
-    error?: any;
-    newPath?: string;
-    success: boolean;
-  };
+  renameLocalFile: (params: RenameLocalFileParams) => RenameLocalFileResult;
   searchLocalFiles: (params: LocalSearchFilesParams) => LocalFileItem[];
 }

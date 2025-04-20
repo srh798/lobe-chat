@@ -1,4 +1,8 @@
-import { LocalFileItem, LocalReadFileResult } from '@lobechat/electron-client-ipc';
+import {
+  LocalFileItem,
+  LocalMoveFilesResultItem,
+  LocalReadFileResult,
+} from '@lobechat/electron-client-ipc';
 
 export interface FileResult {
   contentType?: string;
@@ -32,11 +36,11 @@ export interface LocalReadFilesState {
   filesContent: LocalReadFileResult[];
 }
 
-export interface LocalMoveFileState {
+export interface LocalMoveFilesState {
   error?: string;
-  newPath: string;
-  oldPath: string;
-  success: boolean;
+  results: LocalMoveFilesResultItem[]; // Overall error for the operation if it fails before individual processing
+  successCount: number;
+  totalCount: number;
 }
 
 export interface LocalRenameFileState {

@@ -4,7 +4,7 @@ import { systemPrompt } from './systemRole';
 
 export const LocalFilesApiName = {
   listLocalFiles: 'listLocalFiles',
-  moveLocalFile: 'moveLocalFile',
+  moveLocalFiles: 'moveLocalFiles',
   readLocalFile: 'readLocalFile',
   renameLocalFile: 'renameLocalFile',
   searchLocalFiles: 'searchLocalFiles',
@@ -129,21 +129,31 @@ export const LocalFilesManifest: BuiltinToolManifest = {
     },
     {
       description:
-        'Move a file or folder to a new location, optionally renaming it. Input should be the current path (oldPath) and the target path (newPath).',
-      name: LocalFilesApiName.moveLocalFile,
+        'Moves or renames multiple files/directories. Input is an array of objects, each containing an oldPath and a newPath.',
+      name: LocalFilesApiName.moveLocalFiles,
       parameters: {
         properties: {
-          newPath: {
-            description:
-              'The new path for the file or folder (can be in a different directory and have a different name)',
-            type: 'string',
-          },
-          oldPath: {
-            description: 'The current path of the file or folder to move',
-            type: 'string',
+          items: {
+            description: 'A list of move/rename operations to perform.',
+            items: {
+              properties: {
+                newPath: {
+                  description:
+                    'The target absolute path for the file/directory (can include a new name).',
+                  type: 'string',
+                },
+                oldPath: {
+                  description: 'The current absolute path of the file/directory to move or rename.',
+                  type: 'string',
+                },
+              },
+              required: ['oldPath', 'newPath'],
+              type: 'object',
+            },
+            type: 'array',
           },
         },
-        required: ['oldPath', 'newPath'],
+        required: ['items'],
         type: 'object',
       },
     },
@@ -192,7 +202,6 @@ export const LocalFilesManifest: BuiltinToolManifest = {
     avatar: '📁',
     title: 'Local Files',
   },
-  // Use a simplified system role for now
   systemRole: systemPrompt(),
   type: 'builtin',
 };

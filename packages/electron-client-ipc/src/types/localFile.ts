@@ -24,6 +24,17 @@ export interface MoveLocalFileParams {
   oldPath: string;
 }
 
+export interface MoveLocalFilesParams {
+  items: MoveLocalFileParams[];
+}
+
+export interface LocalMoveFilesResultItem {
+  error?: string; // Error message if this specific item failed
+  newPath?: string; // The final path after moving/renaming, if successful
+  sourcePath: string; // The original path of the item being moved/renamed
+  success: boolean; // Whether the operation for this specific item was successful
+}
+
 export interface RenameLocalFileParams {
   newName: string;
   path: string;
